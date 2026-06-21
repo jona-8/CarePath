@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+body {
+  @apply bg-mist text-ink font-sans antialiased;
+  margin: 0;
+}
+
+/* Subtle topographic-contour backdrop — a quiet "navigation/map" motif that
+   nods to a navigator without being literal. Rendered as a fixed faint SVG. */
+.contour-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  background-image: radial-gradient(
+    1200px 600px at 80% -10%,
+    rgba(31, 140, 134, 0.08),
+    transparent 60%
+  ),
+  radial-gradient(
+    900px 500px at -10% 20%,
+    rgba(224, 165, 58, 0.06),
+    transparent 55%
+  );
+}
+
+/* Focus visibility — accessibility floor. */
+:where(button, a, input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid theme('colors.teal.500');
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* Pill-step intake progress dashes */
+.step-dash {
+  height: 4px;
+  border-radius: 999px;
+  transition: background-color 0.3s ease;
+}
+
+/* Card entrance */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.rise { animation: rise 0.4s ease both; }
+
+/* Tooltip */
+.tip { position: relative; }
+.tip > .tip-body {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  position: absolute;
+  bottom: 130%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 230px;
+  z-index: 30;
+}
+.tip:hover > .tip-body,
+.tip:focus-within > .tip-body {
+  visibility: visible;
+  opacity: 1;
+}
