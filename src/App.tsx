@@ -83,7 +83,7 @@ function Header({ onHome, showHome }: { onHome: () => void; showHome: boolean })
         <button onClick={onHome} className="flex items-center gap-2.5">
           <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-teal-600 p-1">
             <img
-              src="public/logowebsite.png.png"
+              src="public/logowebsite.png"
               alt="CarePath Navigator logo"
               className="h-full w-full object-contain"
             />
